@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Music2Dance, Motion Generation, Diffusion, Dance">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>WanToDance</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+<!-- Sidebar TOC -->
+<nav id="sidebar-toc">
+  <div class="toc-title">Contents</div>
+  <ul>
+    <li><a href="#title">Title</a></li>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#results">Results</a></li>
+    <li class="toc-h2"><a href="#sec-1">1 Dance Genres</a></li>
+    <li class="toc-h3"><a href="#sec-1-1">1.1 Chinese Classical</a></li>
+    <li class="toc-h3"><a href="#sec-1-2">1.2 K-pop</a></li>
+    <li class="toc-h3"><a href="#sec-1-3">1.3 Street</a></li>
+    <li class="toc-h3"><a href="#sec-1-4">1.4 Tap</a></li>
+    <li class="toc-h3"><a href="#sec-1-5">1.5 Latin</a></li>
+    <li class="toc-h2"><a href="#sec-2">2 Minute-scale</a></li>
+    <li class="toc-h2"><a href="#sec-3">3 Customized</a></li>
+    <li class="toc-h3"><a href="#sec-3-1">3.1 Single Music, Multi Ref</a></li>
+    <li class="toc-h3"><a href="#sec-3-2">3.2 Single Ref, Multi Music</a></li>
+    <li class="toc-h2"><a href="#sec-4">4 Diversity</a></li>
+    <li class="toc-h3"><a href="#sec-4-1">4.1 Single Ref, Multi Music</a></li>
+    <li class="toc-h3"><a href="#sec-4-2">4.2 Single Music, Multi Ref</a></li>
+    <li class="toc-h3"><a href="#sec-4-3">4.3 Single Music, Single Ref</a></li>
+    <li class="toc-h2"><a href="#sec-5">5 Keyframe Applications</a></li>
+    <li class="toc-h3"><a href="#sec-5-1">5.1 Outfit Change</a></li>
+    <li class="toc-h3"><a href="#sec-5-2">5.2 Movements Control</a></li>
+    <li class="toc-h2"><a href="#sec-6">6 Comparison</a></li>
+    <li><a href="#BibTeX">BibTeX</a></li>
+    <li><a href="#EthicsConcerns">Ethics</a></li>
+  </ul>
+</nav>
+
+  <section class="hero" id="title">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Wan-Dancer: A Hierarchical Framework for Minute-scale Coherent Music-to-Dance Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=EWb6NW4AAAAJ&hl=en" target="_blank">Mingyang Huang</a>,</span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=QTgxKmkAAAAJ&hl=zh-CN" target="_blank">Peng Zhang</a>,</span>
+                  <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=Arz3iGUAAAAJ" target="_blank">Li Hu</a>,</span>
+                  <a href="" target="_blank">Guangyuan Wang</a>,</span>
+                  <span class="author-block">
+                  <span class="author-block">
+                    <a href="https://openreview.net/profile?id=%7EBang_Zhang1" target="_blank">Bang Zhang</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Tongyi Lab, Alibaba Group</span>
+                  </div>
+
+                  <!-- <div class="column has-text-centered"> -->
+                    <!-- <div class="publication-links"> -->
+                         <!-- Arxiv PDF link -->
+                      <!-- <span class="link-block">
+                        <a href="static/pdfs/" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark"> -->
+                        <!-- <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span> -->
+                        <!-- <span>Paper</span> -->
+                      <!-- </a> -->
+                    <!-- </span> -->
+
+                    <!-- Supplementary PDF link -->
+                    <!-- <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/Wan-Video/Wan-Dancer" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2607.09581" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const videoLinks = {
+    "001": "https://cloud.video.taobao.com/vod/JwyfIUEDgvkJZ9Y9jcetmxF0KFT39QOZ7gX3fgdMWsw.mp4",
+    "002": "https://cloud.video.taobao.com/vod/tHYQgRwFmx0A4CV0q2Kr6aDEKBe2L_baKNTlkdCgGv0.mp4",
+    "003": "https://cloud.video.taobao.com/vod/DqDt3Av1x0sY0Hbnou96zJJFvhjNOm-i4XnlY6r1vOY.mp4",
+    "004": "https://cloud.video.taobao.com/vod/62JecWEfhBf1UTMgdADMx3qL7MG8TSoxWgLefU6UM2k.mp4",
+    "005": "https://cloud.video.taobao.com/vod/VmL5d4RRuVLm4AzoBx8CHdFP9CcH8jGeyGTC0G3xwfs.mp4",
+    "006": "https://cloud.video.taobao.com/vod/GSeHu0FJxI6776J7ZRybz8XuHAMbRX3Q-gADoOce0UI.mp4",
+    "007": "https://cloud.video.taobao.com/vod/ac8x43zGC8t6fd7A3ksPpWscbHeKrraaznmeTa6zaHI.mp4",
+    "008": "https://cloud.video.taobao.com/vod/z1XkLr1A3RiSF5egg2Wrdmvn1_ucaeiiDifj7w8cBb4.mp4",
+    "009": "https://cloud.video.taobao.com/vod/kXlN9d1EB7R2nmuAVvstVbWNhfyvPYCa92sj2VkqPoc.mp4",
+    "010": "https://cloud.video.taobao.com/vod/BCeGwB5gvWYX62dvSeipFNOiy3anyZjLTAZLmdVxdas.mp4",
+    "011": "https://cloud.video.taobao.com/vod/GSN0tdoPMkX10VhToQfgBY8iXh870K2sYEKTv5-ypBs.mp4",
+    "012": "https://cloud.video.taobao.com/vod/Td4FjQ0vLZ2a1MXnk-CG7ZNDQbZoK2Eg8A3I15gvcZc.mp4",
+    "013": "https://cloud.video.taobao.com/vod/k4nVnIR7PCV-YJM7Fj0YALWrzZ0wITc6esLkJ4soBeY.mp4",
+    "014": "https://cloud.video.taobao.com/vod/2IEe63L1KxR2ZvTsnHgDQlpgU5h-3Av3Fy6a1onTQ-E.mp4",
+    "015": "https://cloud.video.taobao.com/vod/R-ZxVHwpKLchmak6iJaSj_z0YoMFDi1SuP1EaJfqqI4.mp4",
+    "016": "https://cloud.video.taobao.com/vod/DXPAoNawaJdaLFHeB3m5JnUKcLE_7aPOoDUyDscra0w.mp4",
+    "017": "https://cloud.video.taobao.com/vod/9HsS0cm0o-XuUD6e4NxCLqGum1xmuB-HHAYGuHRCcic.mp4",
+    "018": "https://cloud.video.taobao.com/vod/WGdGiNRyzXLtWlIkGzr2Yow_lDrXGbFux323guJJ2ZY.mp4",
+    "019": "https://cloud.video.taobao.com/vod/LMVXo2DaCD3MLM7cnA5vbkSrq9R_InQiVUhvjhDL3XM.mp4",
+    "020": "https://cloud.video.taobao.com/vod/7CNfkeeuGUCK-1D7Llz9op5286Gvk8IGXf_MHmghVxc.mp4",
+    "021": "https://cloud.video.taobao.com/vod/rmRda0VePia-MMCFT1875o_9yxby17TQDmCDc_Dqvxw.mp4",
+    "022": "https://cloud.video.taobao.com/vod/qbM1YgmD1C-WycKu-xh2eah8WnD9_Zc0T5NAx-_i-T4.mp4",
+    "023": "https://cloud.video.taobao.com/vod/CsxgQifaxEgIfdda26vKSHhZH_M1t_AO9PW3eW0Dw5A.mp4",
+    "024": "https://cloud.video.taobao.com/vod/ykC0k8isU_QdHvxJDtJe8al1xjmm8F7WRKub-YTO3lU.mp4",
+    "025": "https://cloud.video.taobao.com/vod/qFKoBvHptCm-gnOB56et5CiJ363NolrDRc40RFBTYJo.mp4",
+    "026": "https://cloud.video.taobao.com/vod/um4l0Wjz-Lamg2QYhq1YVWr1CQvW37RfJak7Eccox7o.mp4",
+    "027": "https://cloud.video.taobao.com/vod/3KVa2mbZCuZJqd3JUEi6_wFEhhQB5fJdCUbzm_aViGg.mp4",
+    "028": "https://cloud.video.taobao.com/vod/RCo_gXX238Z8gphyiYKc5FqDh_knbDsNVTZzDbLQvzY.mp4",
+    "029": "https://cloud.video.taobao.com/vod/zZ0CRwOAoyrIUaojgLrr5Z9qOCFoFI2g80nG1G5_VXM.mp4",
+    "030": "https://cloud.video.taobao.com/vod/WxJwjtcK7ZzXvIVYh-PFBiKkhxZWz4JFQPZKVMW5T-E.mp4",
+    "031": "https://cloud.video.taobao.com/vod/fdFsOjvJPcHX7XS7VGp5f8A2sz9Z7WIGAaEuwwb7Tbo.mp4",
+    "032": "https://cloud.video.taobao.com/vod/wbhkGW7HI1pMYKl-SluxUhL_bxg0btswDGP5ocywU_8.mp4",
+    "033": "https://cloud.video.taobao.com/vod/G6c1jJgG_md5O3j8u26lk7ePhFbC3xJ4beuU23561PM.mp4",
+    "034": "https://cloud.video.taobao.com/vod/0TLiVQU6bfKmbOuZaZdDBj7-Qjc3AQfCix3fNMQguu8.mp4",
+    "035": "https://cloud.video.taobao.com/vod/ffw6S_AgYTXZvnr2Q-tldWcXjsqbaO5DUQLQoQtA9aY.mp4",
+    "036": "https://cloud.video.taobao.com/vod/cKYKugOCUc9V5rkddZRp7eTtZlyAETV4kqgXXsfYNWE.mp4",
+    "037": "https://cloud.video.taobao.com/vod/NDGIVW3irpSFEn_LuQXBgXFMS5ff-J9k_xq_jjIlbeY.mp4",
+    "038": "https://cloud.video.taobao.com/vod/YT6wAVZcR5WPKJ5ZG-E1shZxpWoM-SMq4Ste4MIlwPM.mp4",
+    "039": "https://cloud.video.taobao.com/vod/w4BnAHbb-ta4ldlOUIQG-139GcbtgRbOSCUMmYIgKuo.mp4",
+    "040": "https://cloud.video.taobao.com/vod/W_DpbYNtuZXNdWxV9ahiRzWrU4lE6FA-tNGHD2OVyNA.mp4",
+    "041": "https://cloud.video.taobao.com/vod/1WIO6bDrSGHKma6zJMIn5VcWCyn56VF29PXwYq7o8jI.mp4",
+    "042": "https://cloud.video.taobao.com/vod/nacAX8vU7vNsjfYw5sTR5fCskRp3nA0sOMYJ-A8VJz0.mp4",
+    "043": "https://cloud.video.taobao.com/vod/00JMnkOA9-dcCbxghFXymq9wNE-Pc5mkm2ru_MXP6b8.mp4",
+    "044": "https://cloud.video.taobao.com/vod/WldSfVPeB5_J_WAT7h9X2dy-SpMUOJEdQQ6QuBfU3TQ.mp4",
+    "045": "https://cloud.video.taobao.com/vod/K6B9VPkO5E1_VQa9hP8sTsi7pOaBXhYvGs0cjJcBegA.mp4",
+    "046": "https://cloud.video.taobao.com/vod/ifSe7LmSYX6bWybmh6v2v1cTsJ61YBdWfkmnhagJQDo.mp4",
+    "047": "https://cloud.video.taobao.com/vod/c8wG3gUZoIgfxcts74LREopLt1uubaMFtQMk7pSkV1k.mp4",
+    "048": "https://cloud.video.taobao.com/vod/kx7IpPU2bqIWK4zRsD72x_jDA5xxUX8Y9tn1VNLVItw.mp4",
+    "049": "https://cloud.video.taobao.com/vod/yxLQvd_PjSAgDzNf5c2Uvv8YXwhDunwUuORkbt5MnTc.mp4"
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('source[data-video-key]').forEach(function(source) {
+      var key = source.getAttribute('data-video-key');
+      if (videoLinks[key]) {
+        source.setAttribute('src', videoLinks[key]);
+        source.parentElement.load();
+      }
+    });
+  });
+</script>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="video-row">
+        <!-- 一段换装视频，人变装，背景不变 -->
+        <video class="video-item" controls preload="metadata">
+          <source data-video-key="001" src="" type="video/mp4">
+        </video>
+        <!-- 一段长时视频，2分钟 -->
+        <video class="video-item" controls preload="metadata">
+          <source data-video-key="002" src="" type="video/mp4">
+        </video>
+      </div>
+      <p>
+        <i>
+          Left video: Generated dance video under K-pop music "Radio" with outfit changes (duration: 42s). <br />
+          Right video: Generated dance video under K-pop music "Golden" (duration: 2min36s).
+        </i>
+      </p>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" id="abstract">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Generating long-duration, high-definition, and rhythmically synchronized dance videos directly from music remains a significant challenge, primarily due to the temporal constraints of current diffusion models, which typically fail beyond 20 seconds. Existing approaches, whether they rely on intermediate 3D skeletons or on end-to-end video synthesis, suffer from temporal drift, identity inconsistency, and repetitive motion patterns when extended to longer horizons. To address these limitations, we propose a novel hierarchical framework for minute-scale coherent music-to-dance generation. Our method decouples the process into global keyframe planning and local temporal refinement, leveraging full-track musical context to ensure long-range coherence. Key innovations include dynamic frame rate adaptation via time-mapped RoPE embeddings for precise alignment, an optical-flow-based loss function to enhance motion continuity, and motion-speed control to preserve high-fidelity details during rapid movements. Extensive experiments demonstrate that our framework surpasses the conventional duration barrier, generating stable, 720p/30fps videos exceeding one minute with superior temporal stability. Furthermore, the model exhibits robust versatility across five distinct dance genres, conditioned on both audio and textual prompts, establishing a new state-of-the-art in coherent, long-form dance video synthesis.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- video-->
+ <br />
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+      <h2 class="title is-3" id="results">
+        Results
+      </h2>
+      </div>
+    </div>
+    <div class="content has-text-justified">
+        <p>
+          
+      </div>
+      <!-- 111111111111111111 -->
+      <!-- 1111111111111 -->
+      <h2 class="title is-4" id="sec-1">1 Different Dance Genres</h2>
+      <h3 class="title is-4" id="sec-1-1">1.1 Chinese Classical Dance</h3>
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="003" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="004" src="" type="video/mp4">
+        </video>
+      </div>
+      <!-- <br />
+      <div class="video-row">
+        <video class="video-item" controls>
+          <source src="static/videos/1_1/gudian_005_gudian.mp4" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="static/videos/1_1/gudian_007_gudian.mp4" type="video/mp4">
+        </video>
+      </div> -->
+
+      <br />
+      <h3 class="title is-4" id="sec-1-2">1.2 K-pop Dance</h3>
+      <!-- <div class="video-row">
+        <video class="video-item" controls>
+          <source src="static/videos/1_2/kpop_005_kpop.mp4" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="static/videos/1_2/kpop_007_kpop.mp4" type="video/mp4">
+        </video>
+      </div>
+      <br /> -->
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="005" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="006" src="" type="video/mp4">
+        </video>
+      </div>
+
+      <br />
+      <h3 class="title is-4" id="sec-1-3">1.3 Street Dance</h3>
+      <!-- <div class="video-row">
+        <video class="video-item" controls>
+          <source src="static/videos/1_3/jiewu_002_jiewu.mp4" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="static/videos/1_3/jiewu_003_jiewu.mp4" type="video/mp4">
+        </video>
+      </div>
+      <br /> -->
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="007" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="008" src="" type="video/mp4">
+        </video>
+      </div>
+
+      <br />
+      <h3 class="title is-4" id="sec-1-4">1.4 Tap Dance</h3>
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="009" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="010" src="" type="video/mp4">
+        </video>
+      </div>
+      <!-- <br />
+      <div class="video-row">
+        <video class="video-item" controls>
+          <source src="static/videos/1_4/tita_004_tita_004.mp4" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="static/videos/1_4/tita_007_tita_003.mp4" type="video/mp4">
+        </video>
+      </div> -->
+
+      <br />
+      <h3 class="title is-4" id="sec-1-5">1.5 Latin Dance</h3>
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="011" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="012" src="" type="video/mp4">
+        </video>
+      </div>
+      <!-- <br />
+      <div class="video-row">
+        <video class="video-item" controls>
+          <source src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="" type="video/mp4">
+        </video>
+      </div> -->
+
+      <!-- 5555555555555 -->
+       <!-- 222222222222 -->
+      <br />
+      <h2 class="title is-4" id="sec-2">2 Minute-scale Music-to-Dance Video Generation</h2>
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="013" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="014" src="" type="video/mp4">
+        </video>
+      </div>
+      <p>
+        <i>
+          Left video: Generated Latin dance video (duration: 2min8s). <br />
+          Right video: Generated Chinese classical dance video (duration: 2min41s).
+        </i>
+      </p>
+      <br />
+
+      <!-- 666666666666 -->
+       <!-- 33333333333 -->
+      <h2 class="title is-4" id="sec-3">3 Customized Music-to-Dance Video Generation</h2>
+      <p>Our method can generate specific choreographic motions using Low-Rank Adaptation (LoRA).</p>
+      <br />
+      <h3 class="title is-4" id="sec-3-1">3.1 Single Music, Multiple References</h3>
+      <p>
+          All videos are generated based on the same music: <strong>"Victory Dance"</strong>. <br />
+      </p>
+      <br />
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="015" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="016" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="017" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="018" src="" type="video/mp4">
+        </video>
+      </div>
+
+      <br />
+
+      <h3 class="title is-4" id="sec-3-2">3.2 Single Reference, Multiple Music</h3>
+      <p>
+          The videos below are generated based on the music: <strong>"Dao Ma", "Spaghetti", "Miniskirt", "Zoo"</strong>. <br />
+      </p>
+      <br />
+      <i>Left: reference image. Right: generated dance video.</i>
+      
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="019" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="020" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="021" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="022" src="" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- 222222222222222 -->
+       <!-- 44444444444 -->
+      <br />
+      <h2 class="title is-4" id="sec-4">4 Diversity</h2>
+      <!-- 4.1 -->
+      <h3 class="title is-4" id="sec-4-1">4.1 Single Reference, Multiple Music</h3>
+      <p>
+          Each row displays videos generated from the same reference image with different music. 
+      </p>
+      
+      <br />
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="023" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="024" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="025" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="026" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="027" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="028" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <!-- <div class="video-row">
+        <video class="video-item" controls>
+          <source src="static/videos/" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="static/videos/" type="video/mp4">
+        </video>
+      </div>
+      <br /> -->
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="029" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="030" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+
+      <!-- 333333333333 -->
+       <!-- 4.2 -->
+      <h3 class="title is-4" id="sec-4-2">4.2 Single Music, Multiple References</h3>
+      <p>
+          Each row displays videos generated from the same music with different reference images. 
+      </p>
+      
+      <br />
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="031" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="032" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="033" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="034" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="035" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="036" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <!-- <div class="video-row">
+        <video class="video-item" controls>
+          <source src="static/videos/" type="video/mp4">
+        </video>
+        <video class="video-item" controls>
+          <source src="static/videos/" type="video/mp4">
+        </video>
+      </div>
+      <br /> -->
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="037" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="038" src="" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- 444444444444 -->
+       <!-- 4.3 -->
+      <br />
+      <h3 class="title is-4" id="sec-4-3">4.3 Single Music, Single Reference</h3>
+      <p>
+          Each row displays videos generated from the same music and reference image with different seeds. 
+      </p>
+      
+      <br />
+      <i>Left: reference image. Right: generated dance video.</i>
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="039" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="040" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="041" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="042" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="043" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="044" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="045" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="046" src="" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="047" src="" type="video/mp4">
+        </video>
+        <video class="video-item" controls loading="lazy">
+          <source data-video-key="048" src="" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- 777777777777 -->
+       <!-- 555555555555 -->
+      <br />
+      <h2 class="title is-4" id="sec-5">5 Creative Keyframe Applications</h2>
+      <p>
+          Our method supports outfit changes based on keyframes generated in the global stage. Alternatively, users can manually define motion keyframes and leverage the local-stage model to generate dance videos with tightly controlled movements.
+      </p>
+      <br />
+
+      <h3 class="title is-4" id="sec-5-1">5.1 Outfit Change </h3>
+      <table class="table is-bordered is-striped is-fullwidth">
+        <thead>
+          <tr>
+            <th style="text-align: center;">Keyframes(Change Outfit)</th>
+            <th style="text-align: center;">Generated Video</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="vertical-align: middle;"><img src="static/images/001.png" alt="Outfit Change Keyframes"></td>
+            <td>
+              <video class="video-item" controls loading="lazy">
+                <source data-video-key="001" src="" type="video/mp4">
+              </video>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="title is-4" id="sec-5-2">5.2 Movements Control </h3>
+      <table class="table is-bordered is-striped is-fullwidth">
+        <thead>
+          <tr>
+            <th style="text-align: center;">Keyframes(Change Movement)</th>
+            <th style="text-align: center;">Generated Video</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="vertical-align: middle;"><img src="static/images/002.png" alt="Movements Control Keyframes"></td>
+            <td>
+              <video class="video-item" controls loading="lazy">
+                <source data-video-key="049" src="" type="video/mp4">
+              </video>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />
+      <p>
+          <i><strong>Please note that all aforementioned videos were initially generated by our model and subsequently refined through post-processing.</strong></i>
+      </p>
+
+      <br />
+
+      <h2 class="title is-4" id="sec-6">6 Comparison with the SOTAs</h2>
+      <h3 class="title is-4">6.1 Comparison with X-Dancer</h3>
+      <p>
+          <i><strong>Left: reference image. Middle: X-Dancer. Right: Ours</strong></i>
+      </p>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source src="https://cloud.video.taobao.com/vod/AyGv50QqnCxjInLLwbnvASwOjQ4sigfOH0Fbbn_3mqE.mp4" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source src="https://cloud.video.taobao.com/vod/DyHKzSLfZOuu0dwEd9me_ulOT4vtuqPlmgMlXSR01sQ.mp4" type="video/mp4">
+        </video>
+      </div>
+      <br />
+      <div class="video-row">
+        <video class="video-item" controls loading="lazy">
+          <source src="https://cloud.video.taobao.com/vod/K83C7eaU5uHrLP3_ke-4ZbNcVSPf4OXwaPoKiRnlIYA.mp4" type="video/mp4">
+        </video>
+      </div>
+    
+  </div>
+</section>
+<!-- End Demo video -->
+
+
+<!-- video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+      <h2 class="title is-3">
+        Comparison with the SOTAs
+      </h2>
+      </div>
+    </div>
+    <div class="content has-text-justified">
+        <p>
+          We maily compare our work with 
+      </div>
+
+      <video poster="" id="tree" autoplay controls muted loop> -->
+        <!-- Your video here -->
+        <!-- <source src="static/videos/compare_v1.mp4"
+        type="video/mp4">
+      </video>
+      <br /><br />
+      <div class="content has-text-justified">
+        <p>
+          
+      </div>
+    </div>
+    
+  </div>
+</section> -->
+<!-- End Demo video -->
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+      <h2 class="title">BibTeX</h2>
+      </div>
+    </div>
+      <pre><code>
+@article{wan-dancer-2026,
+  title={Wan-Dancer: A Hierarchical Framework for Minute-scale Coherent Music-to-Dance Generation},
+  author={Mingyang Huang, Peng Zhang, Li Hu, Guangyuan Wang, Bang Zhang},
+  website={https://humanaigc.github.io/wan-dancer/},
+  url={https://arxiv.org/abs/2607.09581},
+  year={2026}
+}
+</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+<section class="section" id="EthicsConcerns">
+    <div class="container is-max-desktop content">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+      <h2 class="title">Ethics Concerns</h2>
+      </div>
+    </div>
+      <p>
+        The images and music used here are for demonstrating our research capabilities and are gathered from public sources or generated by AI models. If you are a copyright holder and have concerns, please reach out to us, and we will duly remove the content.
+      </p>
+    </div>
+</section>
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll spy for sidebar TOC -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var tocLinks = document.querySelectorAll('#sidebar-toc a');
+    var sections = [];
+    tocLinks.forEach(function(link) {
+      var id = link.getAttribute('href').substring(1);
+      var el = document.getElementById(id);
+      if (el) sections.push({ id: id, el: el, link: link });
+    });
+
+    function getAbsoluteTop(el) {
+      var top = 0;
+      while (el) {
+        top += el.offsetTop;
+        el = el.offsetParent;
+      }
+      return top;
+    }
+
+    function updateActive() {
+      var scrollY = window.scrollY;
+      var threshold = scrollY + 80;
+      var current = null;
+      for (var i = 0; i < sections.length; i++) {
+        var secTop = getAbsoluteTop(sections[i].el);
+        if (secTop <= threshold) {
+          current = sections[i];
+        }
+      }
+      tocLinks.forEach(function(link) {
+        link.parentElement.classList.remove('active');
+      });
+      if (current) {
+        current.link.parentElement.classList.add('active');
+      }
+    }
+
+    window.addEventListener('scroll', updateActive);
+    updateActive();
+
+    // Smooth scroll for TOC links
+    tocLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = this.getAttribute('href').substring(1);
+        var target = document.getElementById(id);
+        if (target) {
+          var top = getAbsoluteTop(target);
+          window.scrollTo({ top: top - 20, behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>

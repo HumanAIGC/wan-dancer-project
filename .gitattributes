@@ -1,0 +1,15 @@
+static/videos/1_1 filter=lfs diff=lfs merge=lfs -text
+static/videos/1_5 filter=lfs diff=lfs merge=lfs -text
+static/videos/3 filter=lfs diff=lfs merge=lfs -text
+static/videos/6_1 filter=lfs diff=lfs merge=lfs -text
+static/videos/7 filter=lfs diff=lfs merge=lfs -text
+static/videos/0 filter=lfs diff=lfs merge=lfs -text
+static/videos/1_2 filter=lfs diff=lfs merge=lfs -text
+static/videos/1_3 filter=lfs diff=lfs merge=lfs -text
+static/videos/1_4 filter=lfs diff=lfs merge=lfs -text
+static/videos/2 filter=lfs diff=lfs merge=lfs -text
+static/videos/4 filter=lfs diff=lfs merge=lfs -text
+static/videos/6_2 filter=lfs diff=lfs merge=lfs -text
+static/videos/7_1 filter=lfs diff=lfs merge=lfs -text
+static/videos/7_2 filter=lfs diff=lfs merge=lfs -text
+static/videos/5 filter=lfs diff=lfs merge=lfs -text
